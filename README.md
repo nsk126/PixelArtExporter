@@ -1,7 +1,7 @@
 # Pixel Art Exporter
 
 ## For use
-[Pixel Art Explorer](https://pixelartexporter.herokuapp.com/)
+[Pixel Art Exporter](https://pixelartexporter.herokuapp.com/)
 
 ## Usage
 After drawing any simple sketch. The design can be exported as a RGB matrix.
