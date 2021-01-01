@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     
-    <title>Pixel Art Maker</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
+    <title>Pixel RGB exporter</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="#">
   
   </head>
   <body>
@@ -26,23 +28,27 @@
             <br><br>
             width:
             <input type="number" class="input-width" name="width" min="1" max="50" value="25">
-            <input type="submit" class="submit-button" value="Clear and Resize">
+            <input type="submit" class="submit-button" value="Clear and Resize">  
           </form>
+
           <h4>select color</h4>
-          <input type="color" class="color-picker" value="#6aa5b8">
+          
+          <input type="color" class="color-picker" value="#000000">
           <input type="button" class="quick-fill" value="fill">
-          <h4>mode</h4>
-          <input type="button" class="erase-mode" value="erase">
-          <p><em>or double-click to erase</em></p>
-          <input type="button" class="draw-mode" value="draw">
+          
+          <h4 id="text4slider">mode</h4>
+          <label class="switch">
+            <input type="checkbox" id="Chckbox" onclick="switchfnc()">
+            <span class="slider round"></span>
+          </label>
 
         </div>
       </div>
       <div class="column">
-        <h1>Pixel Art Maker</h1>
+        <h1>Pixel art RGB exporter</h1>
         <table class="pixel-canvas"></table>
         <br>
-        <input type="button" class="txt-gen" value="Generate Text">
+        <input type="button" class="txt-gen" value="Generate CSV File">
       </div>
     </div>
     <script src="index.js"></script>

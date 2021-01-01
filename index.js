@@ -1,8 +1,6 @@
 const sizePicker = document.querySelector('.size-picker');
 const pixelCanvas = document.querySelector('.pixel-canvas');
 const quickFill = document.querySelector('.quick-fill');
-const eraseMode = document.querySelector('.erase-mode');
-const drawMode = document.querySelector('.draw-mode');
 const genTxt = document.querySelector('.txt-gen');
 
 
@@ -78,61 +76,7 @@ pixelCanvas.addEventListener('dblclick', e => {
 
 // NONDEFAULT DRAW AND ERASE MODES:
 
-// Allows for drag and single-cell erasing upon clicking 'erase' button. Code for double-click erase functionality (Without entering erase mode) is above. Also note 'down' was set to false in variable above
-eraseMode.addEventListener('click', function() {
-  // Enables drag erasing while in erase mode
-  pixelCanvas.addEventListener('mousedown', function(e) {
-  	down = true;
-  	pixelCanvas.addEventListener('mouseup', function() {
-  		down = false;
-  	});
-    // Ensures cells won't be erased if grid is left while pointer is held down
-    pixelCanvas.addEventListener('mouseleave', function() {
-      down = false;
-    });
-    pixelCanvas.addEventListener('mouseover', function(e) {
-      // While mouse pointer is pressed and within grid boundaries, empties cell contents. Inner if statement fixes bug that fills in entire grid
-    	if (down) {
-        if (e.target.tagName === 'TD') {
-        	e.target.style.backgroundColor = null;
-        }
-      }
-    });
-  });
-  // Enables single-cell erase while in erase mode
-  pixelCanvas.addEventListener('mousedown', function(e) {
-    e.target.style.backgroundColor = null;
-  });
-});
 
-// Allows user to return to (default) draw mode after using 'erase' button. Note 'down' was set to false in variable above
-drawMode.addEventListener('click', function() {
-  pixelCanvas.addEventListener('mousedown', function(e) {
-  	down = true;
-  	pixelCanvas.addEventListener('mouseup', function() {
-  		down = false;
-  	});
-    // Ensures cells won't be colored if grid is left while pointer is held down
-    pixelCanvas.addEventListener('mouseleave', function() {
-      down = false;
-    });
-    pixelCanvas.addEventListener('mouseover', function(e) {
-      const color = document.querySelector('.color-picker').value;
-      // While mouse pointer is pressed and within grid boundaries, fills cell with selected color. Inner if statement fixes bug that fills in entire grid
-    	if (down) {
-        if (e.target.tagName === 'TD') {
-        	e.target.style.backgroundColor = color;
-        }
-      }
-    });
-  });
-  // Enables single-cell coloring while in draw mode
-  pixelCanvas.addEventListener('mousedown', function(e) {
-    if (e.target.tagName !== 'TD') return;
-    const color = document.querySelector('.color-picker').value;
-    e.target.style.backgroundColor = color;
-  });
-});
 
 function downloadString(text, fileType, fileName) {
   var blob = new Blob([text], { type: fileType });
@@ -183,3 +127,76 @@ genTxt.addEventListener('click', function(){
 
   
 })
+
+function switchfnc(){
+  var checkbx = document.getElementById("Chckbox");
+
+  // remove txt and add txt
+ 
+  // by default -> mode = draw 
+  if(checkbx.checked == true){
+    
+    // ERASE MODE
+    document.getElementById("text4slider").innerHTML = "Erase Mode";
+
+    //JS
+    
+    // Enables drag erasing while in erase mode
+    pixelCanvas.addEventListener('mousedown', function(e) {
+      down = true;
+      pixelCanvas.addEventListener('mouseup', function() {
+        down = false;
+      });
+      // Ensures cells won't be erased if grid is left while pointer is held down
+      pixelCanvas.addEventListener('mouseleave', function() {
+        down = false;
+      });
+      pixelCanvas.addEventListener('mouseover', function(e) {
+        // While mouse pointer is pressed and within grid boundaries, empties cell contents. Inner if statement fixes bug that fills in entire grid
+        if (down) {
+          if (e.target.tagName === 'TD') {
+            e.target.style.backgroundColor = null;
+          }
+        }
+      });
+    });
+    // Enables single-cell erase while in erase mode
+    pixelCanvas.addEventListener('mousedown', function(e) {
+      e.target.style.backgroundColor = null;
+    });
+
+  }else{
+
+    // DRAW MODE
+    document.getElementById("text4slider").innerHTML = "Draw Mode";
+
+    //pasted
+    pixelCanvas.addEventListener('mousedown', function(e) {
+  	down = true;
+  	pixelCanvas.addEventListener('mouseup', function() {
+  		down = false;
+  	});
+    // Ensures cells won't be colored if grid is left while pointer is held down
+    pixelCanvas.addEventListener('mouseleave', function() {
+      down = false;
+    });
+    pixelCanvas.addEventListener('mouseover', function(e) {
+      const color = document.querySelector('.color-picker').value;
+      // While mouse pointer is pressed and within grid boundaries, fills cell with selected color. Inner if statement fixes bug that fills in entire grid
+    	if (down) {
+        if (e.target.tagName === 'TD') {
+        	e.target.style.backgroundColor = color;
+        }
+      }
+    });
+  });
+  // Enables single-cell coloring while in draw mode
+  pixelCanvas.addEventListener('mousedown', function(e) {
+    if (e.target.tagName !== 'TD') return;
+    const color = document.querySelector('.color-picker').value;
+    e.target.style.backgroundColor = color;
+  });
+    
+  }
+
+}
